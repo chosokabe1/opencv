@@ -67,8 +67,8 @@ int main(int argc, char *argv[])
 
   ipr_moving_average(src, src, 3);
 
+  imshow("kekka", src);
+  waitKey(0);
   
-  
-
   return 0;
 }
