@@ -50,7 +50,7 @@ int ipr_gaussian(Mat_<uchar>& src, Mat_<uchar>& dst, int size, double sigma){
       float weight;
       for(int yy = 0; yy < size; yy++){
         for(int xx = 0; xx < size; xx++){
-          weight = exp((pow(yy - shell, 2) + pow(xx - shell, 2)) / (2 * pow(sigma, 2))) / (2 * pow(sigma, 2) * M_PI);
+          weight = exp((pow(yy - shell, 2) + pow(xx - shell, 2)) / (2 * pow(sigma, 2)) * (-1)) / (2 * pow(sigma, 2) * M_PI);
           sum += (weight * src(y - shell + yy, x - shell + xx));
         }
       }
@@ -67,8 +67,10 @@ int main(int argc, char *argv[])
     cerr << format("can't src (%s) open.\n", argv[1]);
     exit(1);
   }
+  imshow("kekka", src);
+  waitKey(0);
 
-  ipr_gaussian(src, src, 3, 1);
+  ipr_gaussian(src, src, 9, 3);
 
   imshow("kekka", src);
   waitKey(0);
