@@ -50,8 +50,8 @@ int ipr_gaussian(Mat_<uchar>& src, Mat_<uchar>& dst, int size, double sigma){
       float weight;
       for(int yy = 0; yy < size; yy++){
         for(int xx = 0; xx < size; xx++){
-          weight = exp((pow(yy - shell, 2) + pow(xx - shell, 2)) / 2 * pow(sigma, 2)) / 2 * pow(sigma, 2) * M_PI;
-          sum += weight * src(y - shell + yy, x - shell + xx);
+          weight = exp((pow(yy - shell, 2) + pow(xx - shell, 2)) / (2 * pow(sigma, 2))) / (2 * pow(sigma, 2) * M_PI);
+          sum += (weight * src(y - shell + yy, x - shell + xx));
         }
       }
       dst(y,x) = sum;
