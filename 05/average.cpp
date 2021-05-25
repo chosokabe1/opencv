@@ -15,6 +15,7 @@ int ipr_moving_average(Mat_<uchar>& src, Mat_<uchar>& dst, int size){
   }
   int shell;
   shell = (size - 1) / 2;
+  int i;
   // 上
   for(int y = 0; y < shell; y++ ){
     for(int x = 0; x < src.cols; x++ ){
@@ -23,14 +24,14 @@ int ipr_moving_average(Mat_<uchar>& src, Mat_<uchar>& dst, int size){
   }
 
   // した
-  for(int y = src.rows - 1, int i = 0; i < shell; i++, y--){
+  for(int y = src.rows - 1, i = 0; i < shell; i++, y--){
     for(int x = 0; x < src.cols; x++ ){
       dst(y,x) = 0;
     }
   }
 
   // みぎ
-  for(int x = src.cols - 1, int i = 0; i < shell; i++, x--){
+  for(int x = src.cols - 1, i = 0; i < shell; i++, x--){
     for(int y = 0; y < src.rows; y++){
       dst(y,x) = 0;
     }
