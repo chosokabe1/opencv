@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
     exit(1);
   }
 
-  ipr_gaussian(src, src, 5);
+  ipr_gaussian(src, src, 3, 1);
 
   imshow("kekka", src);
   waitKey(0);
