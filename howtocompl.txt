@@ -1,0 +1,2 @@
+g++ opencv_test.cpp `pkg-config --cflags --libs opencv4` -o opencv_test
+g++ opencv_copy_image.cpp `pkg-config --cflags --libs opencv4` -o a.out
