@@ -3,7 +3,6 @@
 #include <cmath>
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc.hpp>
-#include "save_histogram.cpp"
 
 const int NBIN = 256;   // ヒストグラムのビン数
 
@@ -69,6 +68,6 @@ int main(int argc, char *argv[])
 
   imshow("kekka", src);
   waitKey(0);
-  
+
   return 0;
 }
