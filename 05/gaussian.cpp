@@ -16,6 +16,19 @@ int ipr_gaussian(Mat_<uchar>& src, Mat_<uchar>& dst, int size, double sigma){
   }
   int shell;
   shell = (size - 1) / 2;
+  for(int y = shell; y < src.rows - shell; y++){
+    for(int x = shell; x < src.cols - shell; x++){
+      float sum = 0;
+      float weight;
+      for(int yy = 0; yy < size; yy++){
+        for(int xx = 0; xx < size; xx++){
+          weight = exp((pow(yy - shell, 2) + pow(xx - shell, 2)) / (2 * pow(sigma, 2)) * (-1)) / (2 * pow(sigma, 2) * M_PI);
+          sum += (weight * src(y - shell + yy, x - shell + xx));
+        }
+      }
+      dst(y,x) = sum;
+    }
+  }
   int i;
   // 上
   for(int y = 0; y < shell; y++ ){
@@ -44,19 +57,7 @@ int ipr_gaussian(Mat_<uchar>& src, Mat_<uchar>& dst, int size, double sigma){
       dst(y,x) = 0;
     }
   }
-  for(int y = shell; y < src.rows - shell; y++){
-    for(int x = shell; x < src.cols - shell; x++){
-      float sum = 0;
-      float weight;
-      for(int yy = 0; yy < size; yy++){
-        for(int xx = 0; xx < size; xx++){
-          weight = exp((pow(yy - shell, 2) + pow(xx - shell, 2)) / (2 * pow(sigma, 2)) * (-1)) / (2 * pow(sigma, 2) * M_PI);
-          sum += (weight * src(y - shell + yy, x - shell + xx));
-        }
-      }
-      dst(y,x) = sum;
-    }
-  }
+  
   return 0;
 
 }
