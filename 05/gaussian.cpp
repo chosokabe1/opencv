@@ -14,6 +14,9 @@ int ipr_gaussian(Mat_<uchar>& src, Mat_<uchar>& dst, int size, double sigma){
     cout << "フィルタのサイズは奇数にしてください" << endl;
     return 0;
   }
+  if( sigma <= 0 ){
+    sigma = 0.3 * ((size - 1) / 2 - 1) + 0.8;
+  }
   int shell;
   shell = (size - 1) / 2;
   for(int y = shell; y < src.rows - shell; y++){
