@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
 
   imshow("kekka", src);
   waitKey(0);
+  
 
   return 0;
 }

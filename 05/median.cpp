@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <cstdlib>
 #include <cmath>
 #include <math.h>
@@ -24,24 +25,21 @@ void sort(vector<int>& x)
 }
 int ipr_median_filter(Mat_<uchar>& src, Mat_<uchar>& dst){
   int shell = 1; // 外郭は1
+  Mat_<uchar> tmp_image = src.clone();
   for(int y = shell; y < src.rows - shell; y++){
     for(int x = shell; x < src.cols - shell; x++){
-      vector<int> x;
-      for(int yy = -1; yy <= 1; yy++){
-        for(int xx = -1 ; xx <= 1; xx++){
-          int temp = src(y + yy, x + xx);
-          x.push_back(temp);
-          sort(x);
-          for (vector<int>::size_type i = 0; i < x.size(); i++){
-            cout << "x[" << i << "] = " << x[i] << endl;
-          }
-          cout << "x.size() = " << x.size() << endl;
+      vector<int> a;
+      for(int y2 = -1; y2 <= 1; y2++){
+        for(int x2 = -1 ; x2 <= 1; x2++){
+          unsigned char temp = tmp_image(y + y2, x + x2);
+          a.push_back(temp);
         }
       }
+      sort(a);
+      int median = (a.size() + 1) / 2;
+      // cout << "median = " << median << endl;
+      dst(y,x) = a.at(median);
 
-      
-
-      dst(y,x) = sum;
     }
   }
   int i;
