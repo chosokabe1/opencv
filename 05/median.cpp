@@ -19,6 +19,8 @@ void sort(vector<int>& x)
         tmp = x[j];
         x[j] = x[j+1];
         x[j+1] = tmp;
+
+        
       }
     }
   }
