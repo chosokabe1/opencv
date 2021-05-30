@@ -19,9 +19,30 @@ void sort(vector<int>& x)
         tmp = x[j];
         x[j] = x[j+1];
         x[j+1] = tmp;
+
+        
       }
     }
   }
+}
+float ipr_calc_distributed(Mat_<uchar> src)
+{
+  Mat_<uchar> tmp_image = src.clone();
+  float distributed;
+
+
+  return distributed;
+}
+void ipr_edge_preserving_smooth(Mat_<uchar>& src, Mat_<uchar>& dst){
+  int shell = 2; // 外郭は2
+  Mat_<uchar> tmp_image = src.clone();
+  for(int y = shell; y < src.rows - shell; y++){
+    for(int x = shell; x < src.cols - shell; x++){
+      Mat_<Vec3b> local_area(5,5, Vec3b::all(0.0));
+      cout << local_area.size() << endl;
+    }
+  }
+
 }
 int ipr_median_filter(Mat_<uchar>& src, Mat_<uchar>& dst){
   int shell = 1; // 外郭は1
@@ -70,11 +91,11 @@ int ipr_median_filter(Mat_<uchar>& src, Mat_<uchar>& dst){
       dst(y,x) = 0;
     }
   }
-  cout << src.size() << endl;
   
   return 0;
 
 }
+
 int main(int argc, char *argv[])
 {
   Mat_<uchar> src = imread(argv[1], IMREAD_GRAYSCALE);
@@ -85,7 +106,7 @@ int main(int argc, char *argv[])
   imshow("kekka", src);
   waitKey(0);
 
-  ipr_median_filter(src, src);
+  ipr_edge_preserving_smooth(src,src);
 
   imshow("kekka", src);
   waitKey(0);
